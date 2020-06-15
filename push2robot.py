@@ -16,16 +16,17 @@ except:
 
 packages = next(os.walk(dir_path))[1]
 for package in packages:
-    files_in_package = [os.path.join(dp, f) for dp, dn, filenames in os.walk(dir_path+'/'+package) for f in filenames]
-    date_of_package = max([os.path.getmtime(file_) for file_ in files_in_package])
-    if date_of_package>dummy_date:
-        print('Updating "' + package + '" package...')
-        comm = 'sshpass -p {} ssh {}@{} "rm -rf {}/{}"'.format(ROBOT_PASS, ROBOT_USER, ROBOT_IP, TARGET_FOLDER, package) 
-        # print(comm)
-        os.system(comm)
-        comm = 'sshpass -p {} scp -r {} {}@{}:{}'.format(ROBOT_PASS, dir_path+'/'+package, ROBOT_USER, ROBOT_IP, TARGET_FOLDER)
-        # print(comm)
-        os.system(comm)
+    if not package.startswith('.'):
+        files_in_package = [os.path.join(dp, f) for dp, dn, filenames in os.walk(dir_path+'/'+package) for f in filenames]
+        date_of_package = max([os.path.getmtime(file_) for file_ in files_in_package])
+        if date_of_package>dummy_date:
+            print('Updating "' + package + '" package...')
+            comm = 'sshpass -p {} ssh {}@{} "rm -rf {}/{}"'.format(ROBOT_PASS, ROBOT_USER, ROBOT_IP, TARGET_FOLDER, package) 
+            # print(comm)
+            os.system(comm)
+            comm = 'sshpass -p {} scp -r {} {}@{}:{}'.format(ROBOT_PASS, dir_path+'/'+package, ROBOT_USER, ROBOT_IP, TARGET_FOLDER)
+            # print(comm)
+            os.system(comm)
 
 os.system('touch ' + dummy_path)
 
