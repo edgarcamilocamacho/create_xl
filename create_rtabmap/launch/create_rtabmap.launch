@@ -34,7 +34,7 @@
   <arg name="rviz_cfg"                default="$(find rtabmap_ros)/launch/config/rgbd.rviz" />
   
   <arg name="frame_id"                default="base_link"/>     <!-- Fixed frame id, you may set "base_link" or "base_footprint" if they are published -->
-  <arg name="odom_frame_id"           default="/odom"/>                <!-- If set, TF is used to get odometry instead of the topic -->
+  <arg name="odom_frame_id"           default=""/>                <!-- If set, TF is used to get odometry instead of the topic -->
   <arg name="map_frame_id"            default="map"/>
   <arg name="ground_truth_frame_id"   default=""/>     <!-- e.g., "world" -->
   <arg name="ground_truth_base_frame_id" default=""/>  <!-- e.g., "tracker", a fake frame matching the frame "frame_id" (but on different TF tree) -->
@@ -84,7 +84,7 @@
    
   <arg name="visual_odometry"          default="false"/>          <!-- Launch rtabmap visual odometry node -->
   <arg name="icp_odometry"             default="false"/>         <!-- Launch rtabmap icp odometry node -->
-  <arg name="odom_topic"               default="/cam_D/odom/sample"/>          <!-- Odometry topic name -->
+  <arg name="odom_topic"               default="/odom"/>          <!-- Odometry topic name -->
   <arg name="vo_frame_id"              default="$(arg odom_topic)"/> <!-- Visual/Icp odometry frame ID for TF -->
   <arg name="publish_tf_odom"          default="true"/>
   <arg name="odom_tf_angular_variance" default="1"/>             <!-- If TF is used to get odometry, this is the default angular variance -->

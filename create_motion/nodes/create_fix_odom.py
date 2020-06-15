@@ -64,9 +64,9 @@ def callback(data):
     
 def listener():
     global pub
-    pub = rospy.Publisher('/odom_fixed', Odometry, queue_size=10)
+    pub = rospy.Publisher('/odom_wheels_fixed', Odometry, queue_size=10)
     rospy.init_node('create_fix_odom', anonymous=True)
-    rospy.Subscriber('/odom', Odometry, callback)
+    rospy.Subscriber('/odom_wheels', Odometry, callback)
     rospy.spin()
 
 if __name__ == '__main__':

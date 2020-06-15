@@ -21,8 +21,10 @@ for package in packages:
     if date_of_package>dummy_date:
         print('Updating "' + package + '" package...')
         comm = 'sshpass -p {} ssh {}@{} "rm -rf {}/{}"'.format(ROBOT_PASS, ROBOT_USER, ROBOT_IP, TARGET_FOLDER, package) 
+        # print(comm)
         os.system(comm)
         comm = 'sshpass -p {} scp -r {} {}@{}:{}'.format(ROBOT_PASS, dir_path+'/'+package, ROBOT_USER, ROBOT_IP, TARGET_FOLDER)
+        # print(comm)
         os.system(comm)
 
 os.system('touch ' + dummy_path)

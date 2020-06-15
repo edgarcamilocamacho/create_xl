@@ -1,16 +1,17 @@
 <launch>
 
   <node pkg="create_motion" type="create_fix_odom.py" name="create_fix_odom" />
+  <node pkg="create_camera" type="create_new_odom.py" name="create_new_odom" />
 
   <include file="$(find realsense2_camera)/launch/rs_camera.launch">
-    <arg name="camera" value="cam_D"/>
+    <arg name="camera" value="cam_T"/>
     <arg name="serial_no" value="925122110688"/>
     <arg name="initial_reset" value="true"/>
-    <arg name="topic_odom_in" value="/odom_fixed"/>
+    <arg name="topic_odom_in" value="/odom_wheels_fixed"/>
     <arg name="calib_odom_file" value="$(find create_camera)/config/t256_config.json"/>
   </include>
 
-  <node pkg="tf2_ros" type="static_transform_publisher" name="t265_to_base" args="-0.14273 -0.0091 -0.5865 0 0 0 cam_D_pose_frame base_link" />
-  <node pkg="tf2_ros" type="static_transform_publisher" name="odom_to_camodom" args="0.14273 0.0091 0.5865 0 0 0 odom cam_D_odom_frame" />
+  <node pkg="tf2_ros" type="static_transform_publisher" name="t265_to_base" args="-0.14273 -0.0091 -0.5865 0 0 0 cam_T_pose_frame base_link" />
+  <node pkg="tf2_ros" type="static_transform_publisher" name="odom_to_camodom" args="0.14273 0.0091 0.5865 0 0 0 odom cam_T_odom_frame" />
 
 </launch>
