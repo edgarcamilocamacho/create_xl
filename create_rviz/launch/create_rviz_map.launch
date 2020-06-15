@@ -1,0 +1,22 @@
+<launch>
+
+    <arg name="rviz_cfg"                default="$(find create_rviz)/config/rviz_map.rviz" />
+
+    <node pkg="rviz" type="rviz" name="rviz" args="-d $(arg rviz_cfg)"/>
+    <!-- <node if="$(arg rviz)" pkg="nodelet" type="nodelet" name="points_xyzrgb" args="standalone rtabmap_ros/point_cloud_xyzrgb" output="$(arg output)">
+        <remap if="$(arg stereo)" from="left/image"        to="$(arg left_image_topic_relay)"/>
+        <remap if="$(arg stereo)" from="right/image"       to="$(arg right_image_topic_relay)"/>
+        <remap if="$(arg stereo)" from="left/camera_info"  to="$(arg left_camera_info_topic)"/>
+        <remap if="$(arg stereo)" from="right/camera_info" to="$(arg right_camera_info_topic)"/>
+        <remap unless="$(arg subscribe_rgbd)" from="rgb/image"         to="$(arg rgb_topic_relay)"/>
+        <remap unless="$(arg subscribe_rgbd)" from="depth/image"       to="$(arg depth_topic_relay)"/>
+        <remap unless="$(arg subscribe_rgbd)" from="rgb/camera_info"   to="$(arg camera_info_topic)"/>
+        <remap from="rgbd_image"        to="$(arg rgbd_topic_relay)"/>
+        <remap from="cloud"             to="voxel_cloud" />
+
+        <param name="decimation"  type="double" value="4"/>
+        <param name="voxel_size"  type="double" value="0.0"/>
+        <param name="approx_sync" type="bool"   value="$(arg approx_sync)"/>
+    </node> -->
+
+</launch>

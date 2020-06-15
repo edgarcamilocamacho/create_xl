@@ -1,0 +1,6 @@
+ 
+<launch>
+
+    <include file="$(find create_motion)/launch/create_driver.launch" />
+
+</launch>

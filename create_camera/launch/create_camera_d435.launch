@@ -1,0 +1,23 @@
+ 
+<launch>
+
+    <include file="$(find realsense2_camera)/launch/rs_camera.launch">
+      <arg name="camera" value="camera"/>
+      <arg name="serial_no" value="933322073325"/>
+      <arg name="align_depth" value="true"/>
+      <arg name="initial_reset" value="true"/>
+      <arg name="enable_sync" value="true"/>
+      <arg name="filters" value="disparity,spatial,temporal,decimation"/>
+      <arg name="clip_distance" value="3.0"/>
+    </include>
+
+    <node pkg="depthimage_to_laserscan" type="depthimage_to_laserscan" name="depthimage_to_laserscan">
+      <remap from="image"       to="/camera/depth/image_rect_raw"/>
+      <remap from="camera_info" to="/camera/depth/camera_info"/>
+      <remap from="scan"        to="/scan"/>
+      <param name="range_max" type="double" value="4"/>
+    </node>
+
+    <node pkg="tf2_ros" type="static_transform_publisher" name="base_to_camera_D" args="0.0 0.0 0.42 0.0 0.0 0.0 base_link camera_link" />
+
+</launch>

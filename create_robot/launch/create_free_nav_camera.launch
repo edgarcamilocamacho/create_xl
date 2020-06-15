@@ -1,0 +1,7 @@
+ 
+<launch>
+
+    <include file="$(find ca_driver)/launch/create_2.launch" />
+    <include file="$(find create_camera)/launch/create_camera_d435.launch" />
+
+</launch>

@@ -1,0 +1,18 @@
+<?xml version="1.0" ?>
+<robot name="create_2" xmlns:xacro="http://ros.org/wiki/xacro">
+
+  <material name="Orange">
+    <color rgba="${150/255} ${150/255} ${150/255} 1.0"/>
+  </material>
+
+  <link name="base_link">
+    <visual>
+      <origin rpy="1.5708 0 1.5708" xyz="0 0 0.339"/>
+      <geometry>
+        <mesh filename="package://create_description/meshes/create_xl.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+      <material name="Orange"/>
+    </visual>
+  </link>
+
+</robot>
