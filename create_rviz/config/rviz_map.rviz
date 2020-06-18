@@ -87,11 +87,11 @@ Visualization Manager:
         All Enabled: false
         base_link:
           Value: true
-        cam_D_link:
+        cam_T_link:
           Value: false
-        cam_D_odom_frame:
+        cam_T_odom_frame:
           Value: false
-        cam_D_pose_frame:
+        cam_T_pose_frame:
           Value: false
         camera_aligned_depth_to_color_frame:
           Value: false
@@ -115,10 +115,14 @@ Visualization Manager:
           Value: false
         camera_link:
           Value: false
+        left_wheel_link:
+          Value: false
         map:
           Value: true
         odom:
           Value: true
+        right_wheel_link:
+          Value: false
       Marker Scale: 1
       Name: TF
       Show Arrows: true
@@ -127,8 +131,8 @@ Visualization Manager:
       Tree:
         map:
           odom:
-            cam_D_odom_frame:
-              cam_D_pose_frame:
+            cam_T_odom_frame:
+              cam_T_pose_frame:
                 base_link:
                   camera_link:
                     camera_aligned_depth_to_color_frame:
@@ -147,7 +151,11 @@ Visualization Manager:
                     camera_infra2_frame:
                       camera_infra2_optical_frame:
                         {}
-                cam_D_link:
+                  left_wheel_link:
+                    {}
+                  right_wheel_link:
+                    {}
+                cam_T_link:
                   {}
       Update Interval: 0
       Value: true
@@ -268,6 +276,40 @@ Visualization Manager:
       Update Interval: 0
       Value: true
       Visual Enabled: true
+    - Angle Tolerance: 0.10000000149011612
+      Class: rviz/Odometry
+      Covariance:
+        Orientation:
+          Alpha: 0.5
+          Color: 255; 255; 127
+          Color Style: Unique
+          Frame: Local
+          Offset: 1
+          Scale: 1
+          Value: true
+        Position:
+          Alpha: 0.30000001192092896
+          Color: 204; 51; 204
+          Scale: 1
+          Value: true
+        Value: false
+      Enabled: false
+      Keep: 100
+      Name: Odometry
+      Position Tolerance: 0.10000000149011612
+      Shape:
+        Alpha: 1
+        Axes Length: 1
+        Axes Radius: 0.10000000149011612
+        Color: 255; 25; 0
+        Head Length: 0.30000001192092896
+        Head Radius: 0.10000000149011612
+        Shaft Length: 1
+        Shaft Radius: 0.05000000074505806
+        Value: Arrow
+      Topic: /odom
+      Unreliable: false
+      Value: false
   Enabled: true
   Global Options:
     Background Color: 48; 48; 48
@@ -292,25 +334,25 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz/Orbit
-      Distance: 11.506715774536133
+      Distance: 6.863240718841553
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.05999999865889549
         Stereo Focal Distance: 1
         Swap Stereo Eyes: false
         Value: false
       Focal Point:
-        X: 0.7438884377479553
-        Y: -1.3877017498016357
-        Z: 0.21291068196296692
+        X: -0.809308648109436
+        Y: 0.08728580176830292
+        Z: 0.6645470857620239
       Focal Shape Fixed Size: true
       Focal Shape Size: 0.05000000074505806
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Pitch: 0.37979772686958313
+      Pitch: 0.9197975993156433
       Target Frame: base_link
       Value: Orbit (rviz)
-      Yaw: 0.8728298544883728
+      Yaw: 1.4328292608261108
     Saved: ~
 Window Geometry:
   Displays:

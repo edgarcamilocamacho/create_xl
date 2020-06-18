@@ -3,8 +3,8 @@
   <arg name="open_rviz" default="true"/>
 
   <!-- move_base -->
-  <include file="$(find create_navigation)/launch/move_base.launch">
-  </include>
+  <!-- <include file="$(find create_navigation)/launch/move_base.launch">
+  </include> -->
 
   <!-- rviz -->
   <group if="$(arg open_rviz)"> 
