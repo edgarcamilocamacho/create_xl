@@ -143,7 +143,7 @@ roslaunch create_robot create_teleop_key.launch
 
 Si no se mueve el robot al enviar comandos de movimiento, finalice y vuelva a iniciar el driver.
 
-## Prueba de cámaras de profundidad (*Intel Realsense D435*)
+## Prueba de cámara de profundidad (*Intel Realsense D435*)
 
 [Robot] Ejecute el nodo de la cámara de profundidad:
 ``` bash
@@ -171,17 +171,17 @@ Algunas veces no muestra la nube de puntos, si esto ocurre, desactive y vuelva a
 
 La visualización debe presentarse así:
 
-***Imagen de RViz y Cámara D435***
+![rviz_d435.png](https://github.com/edgarcamilocamacho/create_xl/blob/master/doc/img/rviz_d435.png?raw=true)
 
 *Nota:* Esta visualización está referenciada al frame *base_link*, así que si el robot se mueve, dicho desplazamiento no se verá reflejado en *RViz*.
 
 ## Prueba de cámara de seguimiento (*Intel Realsense T256*) y odometría visual
 
-Finalice RViz, si se encuentra abierto:
+Finalice RViz, si se encuentra abierto.
 
 [Robot] Ejecute el nodo de la cámara de seguimiento:
 ``` bash
-roslaunch create_camera create_camera_d435.launch
+roslaunch create_camera create_camera_t265.launch
 ```
 
 Debe mostrar algo como:
@@ -205,12 +205,96 @@ Si la cámara de profundidas está ejecutándose, se mostrará también su nube 
 
 La visualización debe presentarse así:
 
-***Imagen de RViz y Cámara T256***
+![rviz_d435.png](https://github.com/edgarcamilocamacho/create_xl/blob/master/doc/img/rviz_t265.png?raw=true)
 
 Teniendo en cuenta que esta visualización se encuentra referenciada al frame *odom*, al desplazar el robot, tanto el modelo del robot como el láser y la nube de puntos de desplazarán igualmente.
 
 ## Mapeo manual
 
+Finalice RViz, si se encuentra abierto.
+
+[PC o Robot] Teniendo andando los nodos del movimiento manual, el *teleop*, y las dos cámaras, ejecute el siguiente *launchfile* (*Importante:/ ésto eliminará el último mapa creado, si no quiere esto, haga una copia de seguridad del archivo `~/.ros/rtabmap.db`):
+
+``` bash
+
+```
+
+Los nodos de *rtabmap* arrancarán, y debe mostrarse algo como lo siguiente:
+
+```
+
+```
+
+Si aparece el mensje `Did not receive data since 5 seconds! Make sure the input topics are published`, asegúrese que los siguientes tópicos se están publicando:
+
+* `/odom`
+* `/camera/color/image_raw`
+* `/camera/aligned_depth_to_color/image_raw`
+* `/camera/color/camera_info`
+* `/scan`
+
+[PC] Si todo está bien, inicie la visualización para el mapeo:
+
+``` bash
+
+```
+
+A través de la terminal del *teleop*, navegue manualmente por el entorno a mapear, tanto el mapa 3D como el 2D proyectado empezarán a formarse, como se muestra a continuación:
+
+***Rviz Mapeando***
+
+También puede observar este video: [mapeo con rtabmap]().
+
+Se puede desactivar el mapa 3D para poder observar el 2D, sin embargo, al volver a activar el 3D, este no aparecerá hasta que ....
+
+Para finalizar el mapeo, simplemente finalice el *launchfile* llamado *----* (presionando *Ctrl+C* en la terminal correspondiente). El mapa se guardará automáticamente en `~/.ros/rtabmap.db`, considere crear una copia de dicho archivo, ya que será reaamplazado al lanzar de nuevo el *launchfile* de mapear.
+
 ## Localización
 
+Finalice RViz, si se encuentra abierto.
+
+[PC o Robot] Lance el *launchfile* de localización:
+``` bash
+
+```
+
+Los nodos de *rtabmap* arrancarán, y debe mostrarse algo como lo siguiente:
+
+```
+
+```
+
+Si aparece el mensaje `Did not receive data since 5 seconds! Make sure the input topics are published`, asegúrese que los siguientes tópicos se están publicando:
+
+* `/odom`
+* `/camera/color/image_raw`
+* `/camera/aligned_depth_to_color/image_raw`
+* `/camera/color/camera_info`
+* `/scan`
+
+[PC] Si todo está bien, inicie la visualización para la localización:
+
+``` bash
+
+```
+
+La visualización se debe presentar así:
+
+***Rviz Mapeando***
+
+También puede observar este video: [localización con rtabmap]().
+
+La posición inicial debe ser detectada automáticamente. A través de la terminal del *teleop*, navegue manualmente y verifique que se localiza correctamente. Por defecto se muestra únicamente el mapa 3D, para cargar el 3D,  ....
+
 ## Navegación (en proceso)
+
+Opción 1:
+``` bash
+
+```
+
+Opción 2:
+``` bash
+
+```
+
