@@ -6,7 +6,6 @@ Panels:
       Expanded:
         - /Global Options1
         - /DepthCloud1/Auto Size1
-        - /TF1
         - /TF1/Frames1
         - /RobotModel1/Links1
       Splitter Ratio: 0.5
@@ -144,7 +143,13 @@ Visualization Manager:
       Frames:
         All Enabled: false
         base_link:
+          Value: false
+        cam_T_link:
           Value: true
+        cam_T_odom_frame:
+          Value: false
+        cam_T_pose_frame:
+          Value: false
         camera_aligned_depth_to_color_frame:
           Value: false
         camera_aligned_depth_to_infra1_frame:
@@ -169,6 +174,8 @@ Visualization Manager:
           Value: false
         left_wheel_link:
           Value: false
+        odom:
+          Value: true
         right_wheel_link:
           Value: false
       Marker Scale: 1
@@ -198,6 +205,12 @@ Visualization Manager:
           left_wheel_link:
             {}
           right_wheel_link:
+            {}
+        cam_T_pose_frame:
+          cam_T_link:
+            {}
+        odom:
+          cam_T_odom_frame:
             {}
       Update Interval: 0
       Value: true
@@ -234,7 +247,7 @@ Visualization Manager:
   Global Options:
     Background Color: 48; 48; 48
     Default Light: true
-    Fixed Frame: base_link
+    Fixed Frame: odom
     Frame Rate: 30
   Name: root
   Tools:
@@ -258,16 +271,16 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz/Orbit
-      Distance: 3.751030445098877
+      Distance: 3.0257809162139893
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.05999999865889549
         Stereo Focal Distance: 1
         Swap Stereo Eyes: false
         Value: false
       Focal Point:
-        X: 0.5343713760375977
-        Y: 0.1638825535774231
-        Z: 0.4294165074825287
+        X: 0.8961753845214844
+        Y: 0.3073228597640991
+        Z: 0.7027893662452698
       Focal Shape Fixed Size: true
       Focal Shape Size: 0.05000000074505806
       Invert Z Axis: false
