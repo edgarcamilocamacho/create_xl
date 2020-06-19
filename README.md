@@ -17,7 +17,11 @@ Versiones de ROS:
 
 * ROS Melodic
 
-Paquetes de ROS necesarios:
+Librerías de Python (2.7):
+
+* scipy==1.2.0
+
+Paquetes de ROS:
 
 * rtabmap
 * rtabmap-ros
@@ -86,13 +90,6 @@ cd ~/ros/create_ws/
 catkin_make
 ```
 
-[Robot] Conceda permisos a su usuario, para acceder al puerto USB:
-``` bash
-sudo adduser $USER dialout
-```
-
-Asegurarse que el puerto serial correspondiente al robot es asignado a `/dev/ttyUSB0`, si no, modificar [aquí](https://github.com/edgarcamilocamacho/create_xl/blob/master/create_autonomy/ca_driver/config/default.yaml#L2).
-
 ## Edición de paquetes
 
 [PC] Luego de realizar alguna modificación en el contenido de algún paquete, al ejecutar el script [push2robot.py](https://github.com/edgarcamilocamacho/create_xl/blob/master/push2robot.py) sin la bandera `force_all`, éste actualizará sólo los paquetes modificados.
@@ -141,8 +138,6 @@ Debe mostrar algo como:
 roslaunch create_robot create_teleop_key.launch
 ```
 
-Si no se mueve el robot al enviar comandos de movimiento, finalice y vuelva a iniciar el driver.
-
 ## Prueba de cámara de profundidad (*Intel Realsense D435*)
 
 [Robot] Ejecute el nodo de la cámara de profundidad:
@@ -158,8 +153,6 @@ Debe mostrar algo como:
  18/06 15:24:55,599 WARNING [140671377729280] (messenger-libusb.cpp:42) control_transfer returned error, index: 768, error: No data available, number: 61
  ...
 ```
-
-Si muestra un INFO sin contenido, y no avanza, o dice que no encontró la cámara, reinicie el nodo, o desconecte y vuelva a conectar la cámara.
 
 [PC] Inicie *RViz* para confirmar la imagen de profundidad:
 
@@ -193,12 +186,10 @@ Debe mostrar algo como:
  ...
 ```
 
-Si muestra un INFO sin contenido, y no avanza, o dice que no encontró la cámara, reinicie el nodo, o desconecte y vuelva a conectar la cámara.
-
 [PC] Inicie *RViz* para confirmar la imagen de profundidad:
 
 ``` bash
-roslaunch create_rviz create_rviz_view_d435.launch
+roslaunch create_rviz create_rviz_view_t265.launch
 ```
 
 Si la cámara de profundidas está ejecutándose, se mostrará también su nube de puntos. Algunas veces no muestra la nube de puntos, si esto ocurre, desactive y vuelva a activar el ítem *DepthCloud*.
@@ -213,30 +204,28 @@ Teniendo en cuenta que esta visualización se encuentra referenciada al frame *o
 
 Finalice RViz, si se encuentra abierto.
 
-[PC o Robot] Teniendo andando los nodos del movimiento manual, el *teleop*, y las dos cámaras, ejecute el siguiente *launchfile* (*Importante:/ ésto eliminará el último mapa creado, si no quiere esto, haga una copia de seguridad del archivo `~/.ros/rtabmap.db`):
+[PC o Robot] Teniendo andando los nodos del movimiento manual, el *teleop*, y las dos cámaras, ejecute el siguiente *launchfile* (*Importante:/ ésto eliminará el último mapa creado, si no quiere esto, haga una copia de seguridad del archivo `~/.ros/rtabmap.db`*):
 
 ``` bash
-
+roslaunch create_robot create_map.launch
 ```
 
 Los nodos de *rtabmap* arrancarán, y debe mostrarse algo como lo siguiente:
-
 ```
-
+/rtabmap/rtabmap subscribed to (approx sync):
+   /odom,
+   /camera/color/image_raw,
+   /camera/aligned_depth_to_color/image_raw,
+   /camera/color/camera_info,
+   /scan
+[ INFO] [1592575647.147131750]: rtabmap 0.19.3 started...
+[ INFO] [1592575648.291133208]: rtabmap (1): Rate=1.00s, Limit=0.000s, RTAB-Map=0.0368s, Maps update=0.0001s pub=0.0000s (local map=1, WM=1)
 ```
-
-Si aparece el mensje `Did not receive data since 5 seconds! Make sure the input topics are published`, asegúrese que los siguientes tópicos se están publicando:
-
-* `/odom`
-* `/camera/color/image_raw`
-* `/camera/aligned_depth_to_color/image_raw`
-* `/camera/color/camera_info`
-* `/scan`
 
 [PC] Si todo está bien, inicie la visualización para el mapeo:
 
 ``` bash
-
+roslaunch create_rviz create_rviz_map.launch
 ```
 
 A través de la terminal del *teleop*, navegue manualmente por el entorno a mapear, tanto el mapa 3D como el 2D proyectado empezarán a formarse, como se muestra a continuación:
@@ -245,37 +234,38 @@ A través de la terminal del *teleop*, navegue manualmente por el entorno a mape
 
 También puede observar este video: [mapeo con rtabmap]().
 
-Se puede desactivar el mapa 3D para poder observar el 2D, sin embargo, al volver a activar el 3D, este no aparecerá hasta que ....
+Se puede desactivar el mapa 3D para poder observar el 2D desactivando el ítem *MapClout*, sin embargo, al volver a activarlo, este no aparecerá hasta que despliegue dicho ítem y active *Download map*.
 
-Para finalizar el mapeo, simplemente finalice el *launchfile* llamado *----* (presionando *Ctrl+C* en la terminal correspondiente). El mapa se guardará automáticamente en `~/.ros/rtabmap.db`, considere crear una copia de dicho archivo, ya que será reaamplazado al lanzar de nuevo el *launchfile* de mapear.
+Para finalizar el mapeo, simplemente finalice el *launchfile create_map.launch* (presionando *Ctrl+C* en la terminal correspondiente). El mapa se guardará automáticamente en `~/.ros/rtabmap.db`, considere crear una copia de dicho archivo, ya que será reaamplazado al lanzar de nuevo el *launchfile* de mapear.
 
 ## Localización
 
 Finalice RViz, si se encuentra abierto.
 
-[PC o Robot] Lance el *launchfile* de localización:
+[PC o Robot] Lance el *launchfile* de localización.
 ``` bash
-
+roslaunch create_robot create_loc.launch
 ```
+
+*Rtabmap* usará el mapa guardado en `~/.ros/rtabmap.db`.
 
 Los nodos de *rtabmap* arrancarán, y debe mostrarse algo como lo siguiente:
+```
+/rtabmap/rtabmap subscribed to (approx sync):
+   /odom,
+   /camera/color/image_raw,
+   /camera/aligned_depth_to_color/image_raw,
+   /camera/color/camera_info,
+   /scan
+[ INFO] [1592576084.894311419]: rtabmap 0.19.3 started...
+[ WARN] (2020-06-19 09:14:45.821) Rtabmap.cpp:2144::process() Rejected loop closure 16 -> 347: Not enough inliers 0/20 (matches=18) between 16 and 347
+[ INFO] [1592576085.863704020]: rtabmap (347): Rate=1.00s, Limit=0.000s, RTAB-Map=0.1317s, Maps update=0.0001s pub=0.0001s (local map=0, WM=232)
 
 ```
-
-```
-
-Si aparece el mensaje `Did not receive data since 5 seconds! Make sure the input topics are published`, asegúrese que los siguientes tópicos se están publicando:
-
-* `/odom`
-* `/camera/color/image_raw`
-* `/camera/aligned_depth_to_color/image_raw`
-* `/camera/color/camera_info`
-* `/scan`
 
 [PC] Si todo está bien, inicie la visualización para la localización:
-
 ``` bash
-
+roslaunch create_rviz create_rviz_loc.launch
 ```
 
 La visualización se debe presentar así:
@@ -284,17 +274,52 @@ La visualización se debe presentar así:
 
 También puede observar este video: [localización con rtabmap]().
 
-La posición inicial debe ser detectada automáticamente. A través de la terminal del *teleop*, navegue manualmente y verifique que se localiza correctamente. Por defecto se muestra únicamente el mapa 3D, para cargar el 3D,  ....
+La posición inicial debe ser detectada automáticamente. A través de la terminal del *teleop*, navegue manualmente y verifique que se localiza correctamente. Por defecto se muestra únicamente el mapa 2D, para cargar el 3D, active el ítem *MapClout*, despliégelo y active *Download map*.
 
 ## Navegación (en proceso)
 
-Opción 1:
+Opción 1 (planner: *base_local_planner/TrajectoryPlannerROS*):
 ``` bash
-
+roslaunch create_navigation move_base.launch
 ```
 
-Opción 2:
+Opción 2 (planner: *dwa_local_planner/DWAPlannerROS*):
 ``` bash
-
+roslaunch create_navigation move_base2.launch
 ```
 
+Visualización:
+``` bash
+roslaunch create_rviz create_rviz_navigation.launch
+```
+
+***Rviz Navegando***
+
+# Solución de Problemas
+
+### [Driver del Robot] El robot no es detectado por el driver:
+
+* [Robot] Conceda permisos a su usuario, para acceder al puerto USB:
+``` bash
+sudo adduser $USER dialout
+```
+
+* Asegurarse que el puerto serial correspondiente al robot es asignado a `/dev/ttyUSB0`, si no, modificar [aquí](https://github.com/edgarcamilocamacho/create_xl/blob/master/create_autonomy/ca_driver/config/default.yaml#L2).
+
+### [Driver del Robot] El robot no se mueve al enviar comandos por *cmd_vel*:
+
+Finalice y vuelva a iniciar el driver.
+
+### [Cámaras] Muestra INFO sin contenido, y no avanza, o dice que no encontró la cámara
+
+Reinicie el nodo, o desconecte y vuelva a conectar la cámara.
+
+### [Mapeo y Localización] Mensaje `Did not receive data since 5 seconds! Make sure the input topics are published`
+
+Asegúrese que los siguientes tópicos se están publicando:
+
+* `/odom`
+* `/camera/color/image_raw`
+* `/camera/aligned_depth_to_color/image_raw`
+* `/camera/color/camera_info`
+* `/scan`
