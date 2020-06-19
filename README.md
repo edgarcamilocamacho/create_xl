@@ -11,7 +11,7 @@ Probado con los siguientes computadores a bordo:
 Sistema Operativo:
 
 * Ubuntu 18.04
-* Mint 
+* Linux Mint 19.3
 
 Versiones de ROS:
 
