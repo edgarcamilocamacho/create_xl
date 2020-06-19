@@ -230,7 +230,7 @@ roslaunch create_rviz create_rviz_map.launch
 
 A través de la terminal del *teleop*, navegue manualmente por el entorno a mapear, tanto el mapa 3D como el 2D proyectado empezarán a formarse, como se muestra a continuación:
 
-***Rviz Mapeando***
+![rviz_map.png](https://github.com/edgarcamilocamacho/create_xl/blob/master/doc/img/rviz_map.png?raw=true)
 
 También puede observar este video: [mapeo con rtabmap]().
 
@@ -270,7 +270,7 @@ roslaunch create_rviz create_rviz_loc.launch
 
 La visualización se debe presentar así:
 
-***Rviz Mapeando***
+![rviz_map.png](https://github.com/edgarcamilocamacho/create_xl/blob/master/doc/img/rviz_loc.png?raw=true)
 
 También puede observar este video: [localización con rtabmap]().
 
@@ -293,7 +293,7 @@ Visualización:
 roslaunch create_rviz create_rviz_navigation.launch
 ```
 
-***Rviz Navegando***
+![rviz_map.png](https://github.com/edgarcamilocamacho/create_xl/blob/master/doc/img/rviz_nav.png?raw=true)
 
 # Solución de Problemas
 
