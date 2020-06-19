@@ -189,7 +189,7 @@ Visualization Manager:
       Color Transformer: RGB8
       Download graph: false
       Download map: false
-      Enabled: true
+      Enabled: false
       Filter ceiling (m): 0
       Filter floor (m): 0
       Invert Rainbow: false
@@ -208,7 +208,7 @@ Visualization Manager:
       Unreliable: false
       Use Fixed Frame: true
       Use rainbow: true
-      Value: true
+      Value: false
     - Class: rtabmap_ros/Info
       Enabled: true
       Name: Info
@@ -349,18 +349,18 @@ Visualization Manager:
         Swap Stereo Eyes: false
         Value: false
       Focal Point:
-        X: 0.06923568248748779
-        Y: -1.1979142427444458
-        Z: -0.06795519590377808
+        X: -0.0810457244515419
+        Y: -1.1327755451202393
+        Z: -0.24536029994487762
       Focal Shape Fixed Size: true
       Focal Shape Size: 0.05000000074505806
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Pitch: 0.6297979354858398
+      Pitch: 0.5897979736328125
       Target Frame: base_link
       Value: Orbit (rviz)
-      Yaw: 2.1278319358825684
+      Yaw: 2.082831859588623
     Saved: ~
 Window Geometry:
   Displays:
