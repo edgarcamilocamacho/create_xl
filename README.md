@@ -7,14 +7,17 @@ Conjunto de paquetes de ROS para puesta en marcha del robot Create XL (Create 2 
 Probado con los siguientes computadores a bordo:
 
 * Up Squared - 4GB de RAM - Intel(R) Atom(TM) Processor E3940 @ 1.60GHz
+* Jetson Nano - 4GB de RAM - quad-cire ARM A57 - 128-core NVIDIA Maxwell GPU
 
 Sistema Operativo:
 
+* Ubuntu 16.04
 * Ubuntu 18.04
 * Linux Mint 19.3
 
 Versiones de ROS:
 
+* ROS Kinetic
 * ROS Melodic
 
 Librerías de Python (2.7):
@@ -26,7 +29,9 @@ Paquetes de ROS:
 * rtabmap
 * rtabmap-ros
 
-*Importante*: Los [drivers del Create 2](https://github.com/AutonomyLab/create_autonomy) no funcionaron con el kernel 5.0.0 (original del Ubuntu 18.04 y derivados), por lo cual se bajó a 4.14.0.
+*Importante*: 
+* Los [drivers del Create 2](https://github.com/AutonomyLab/create_autonomy) no funcionaron con el kernel 5.0.0 (original del Ubuntu 18.04 y derivados), por lo cual se bajó a 4.14.0.
+* Si se esta trabajando con la jetson nano, cambiar `~/ros/create_ws/...` por `~/catkin_ws/...`
 
 # Configuración
 
@@ -46,6 +51,12 @@ Variables de entorno en el PC:
 export ROS_MASTER_URI=http://<PC_IP>:11311
 export ROS_IP=<PC_IP>
 ```
+
+Se puede modificar el entorno en cada dispositivo necesario correr el siguiente comando:
+
+``` nano ~/.bashrc ```
+
+*NOTA* Con `ctrl+w` guardas y con `ctrl+x` sale del editor 
 
 # Instalación
 
@@ -133,10 +144,15 @@ Debe mostrar algo como:
 ...
 ```
 
-[Robot o PC] Lanzar `teleop`:
+[Robot o PC] Lanzar `teleop` desde el teclado:
 ``` bash
 roslaunch create_robot create_teleop_key.launch
 ```
+[Robot o PC] Lanzar `teleop` desde joystick:
+``` bash
+roslaunch create_robot joy_teleop.launch [joy_config:=xbox360]
+```
+Se puede usar `xbox360` o `log710` dependiendo el caso
 
 ## Prueba de cámara de profundidad (*Intel Realsense D435*)
 

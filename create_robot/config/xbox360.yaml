@@ -1,0 +1,30 @@
+# XBox 360 wired controller
+teleop:
+  piloting:
+    type: topic
+    message_type: "geometry_msgs/Twist"
+    topic_name: cmd_vel
+    deadman_buttons: []  # No deadman buttons
+    axis_mappings:
+      -
+        axis: 4  # Right thumb (up/down)
+        target: linear.x
+        scale: 0.4
+        offset: 0.0
+      -
+        axis: 3  # Right thumb stick (left/right)
+        target: angular.z
+        scale: 2.5
+        offset: 0.0
+  dock:
+    type: topic
+    message_type: "std_msgs/Empty"
+    topic_name: dock
+    deadman_buttons: [2]  # RT + Y
+    axis_mappings: []
+  undock:
+    type: topic
+    message_type: "std_msgs/Empty"
+    topic_name: undock
+    deadman_buttons: [1]  # RT + A
+    axis_mappings: []
