@@ -5,7 +5,7 @@
 
   <include file="$(find realsense2_camera)/launch/rs_camera.launch">
     <arg name="camera" value="cam_T"/>
-    <arg name="serial_no" value=""/>
+    <arg name="serial_no" value="925122110647"/>
         <!-- <arg name="serial_no" value="925122110688"/> -->
     <arg name="initial_reset" value="true"/>
     <arg name="topic_odom_in" value="/odom_wheels_fixed"/>
