@@ -22,7 +22,8 @@ Versiones de ROS:
 
 Librerías de Python (2.7):
 
-* scipy==1.2.0
+* scipy==1.2.0  `sudo pip install scipy==1.2.0`
+* Cython
 
 Paquetes de ROS:
 
@@ -56,7 +57,7 @@ Se puede modificar el entorno en cada dispositivo necesario correr el siguiente 
 
 ``` nano ~/.bashrc ```
 
-*NOTA* Con `ctrl+w` guardas y con `ctrl+x` sale del editor 
+*NOTA* Con `ctrl+w` se guarda y con `ctrl+x` se sale del editor 
 
 # Instalación
 
