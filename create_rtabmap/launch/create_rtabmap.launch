@@ -76,7 +76,7 @@
   <arg name="rgb_image_transport"     default="compressed"/>    <!-- Common types: compressed, theora (see "rosrun image_transport list_transports") -->
   <arg name="depth_image_transport"   default="compressedDepth"/>  <!-- Depth compatible types: compressedDepth (see "rosrun image_transport list_transports") -->
    
-  <arg name="subscribe_scan"          default="true"/>
+  <arg name="subscribe_scan"          default="false"/>
   <arg name="scan_topic"              default="/scan"/>
   <arg name="subscribe_scan_cloud"    default="false"/>
   <arg name="scan_cloud_topic"        default="/scan_cloud"/>

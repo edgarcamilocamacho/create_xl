@@ -4,6 +4,7 @@ import numpy as np
 from scipy.spatial.transform import Rotation as R
 import matplotlib.pyplot as plt
 from nav_msgs.msg import Odometry
+from collections import deque
 
 prev_secs = -1
 prev_nsecs = -1
@@ -17,6 +18,9 @@ pub = None
 
 plot = []
 
+buffer_v = deque(maxlen=3)
+buffer_w = deque(maxlen=3)
+
 def callback(data):
     global prev_nsecs, prev_secs, prev_x, prev_y, prev_r, plot, flag_zero, pub
     pub_flag = False
@@ -24,6 +28,8 @@ def callback(data):
     if prev_secs != -1:
         dT = float(data.header.stamp.secs - prev_secs) + float(data.header.stamp.nsecs-prev_nsecs)/1000000000.0
         v = np.sqrt( (prev_x-data.pose.pose.position.x)**2 + (prev_y-data.pose.pose.position.y)**2 ) / dT        
+        if data.twist.twist.linear.x<0.0:
+            v *= -1.0 
         if r>np.pi/2 and prev_r<-np.pi/2:
             w = (r-(prev_r+2*np.pi))/dT
         elif r<-np.pi/2 and prev_r>np.pi/2:
@@ -50,13 +56,15 @@ def callback(data):
     prev_r = r
 
     if pub_flag:
+        buffer_v.append(v)
+        buffer_w.append(w)
         data.twist.covariance = np.eye(6,6).flatten()
-        data.twist.twist.linear.x = v
+        data.twist.twist.linear.x = np.mean(buffer_v)
         data.twist.twist.linear.y = 0.0
         data.twist.twist.linear.z = 0.0
         data.twist.twist.angular.x = 0.0
         data.twist.twist.angular.y = 0.0
-        data.twist.twist.angular.z = w
+        data.twist.twist.angular.z = np.mean(buffer_w)
         pub.publish(data)
 
 
