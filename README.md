@@ -37,13 +37,13 @@ Convención para los computadores involucrados (conectados a la misma red):
 
 Variables de entorno en el Robot:
 ``` bash
-export ROS_MASTER_URI=http://<PC_IP>:11311
+export ROS_MASTER_URI=http://<ROBOT_IP>:11311
 export ROS_IP=<ROBOT_IP>
 ```
 
 Variables de entorno en el PC:
 ``` bash
-export ROS_MASTER_URI=http://<PC_IP>:11311
+export ROS_MASTER_URI=http://<ROBOT_IP>:11311
 export ROS_IP=<PC_IP>
 ```
 
@@ -106,7 +106,7 @@ catkin_make
 
 # Ejecución
 
-[PC] Para las siguientes sesiones, se debe ejecutar `roscore` en el PC:
+[Robot] Para las siguientes sesiones, se debe ejecutar `roscore` en el PC:
 ``` bash
 roscore
 ```
