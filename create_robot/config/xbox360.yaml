@@ -20,11 +20,11 @@ teleop:
     type: topic
     message_type: "std_msgs/Empty"
     topic_name: dock
-    deadman_buttons: [2]  # RT + Y
+    deadman_buttons: [3]  # RT + Y
     axis_mappings: []
   undock:
     type: topic
     message_type: "std_msgs/Empty"
     topic_name: undock
-    deadman_buttons: [1]  # RT + A
+    deadman_buttons: [2]  # RT + A
     axis_mappings: []

@@ -18,6 +18,6 @@
       <param name="range_max" type="double" value="4"/>
     </node>
 
-    <node pkg="tf2_ros" type="static_transform_publisher" name="base_to_camera_D" args="0.0 0.0 0.42 0.0 0.0 0.0 base_link camera_link" />
+    <node pkg="tf2_ros" type="static_transform_publisher" name="base_to_camera_D" args="-0.14273 0.0 0.685 0.0 0.0 0.0 base_link camera_link" />
 
 </launch>

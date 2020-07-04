@@ -12,7 +12,10 @@
     <arg name="calib_odom_file" value="$(find create_camera)/config/t256_config.json"/>
   </include>
 
-  <node pkg="tf2_ros" type="static_transform_publisher" name="t265_to_base" args="-0.14273 -0.0091 -0.5865 0 0 0 cam_T_pose_frame base_link" />
-  <node pkg="tf2_ros" type="static_transform_publisher" name="odom_to_camodom" args="0.14273 0.0091 0.5865 0 0 0 odom cam_T_odom_frame" />
+  <node pkg="tf2_ros" type="static_transform_publisher" name="t265_to_base" args="-0.14273 -0.0091 -0.3700 0 0 0 cam_T_pose_frame base_link" />
+  <node pkg="tf2_ros" type="static_transform_publisher" name="odom_to_camodom" args="0.14273 0.0091 0.3700 0 0 0 odom cam_T_odom_frame" />
 
-</launch>
+
+
+
+624</launch>
