@@ -14,8 +14,11 @@
         Example:
            $ roslaunch rtabmap_ros bumblebee.launch -->
      
+  <!-- Map -->      
+  <arg name="rtabmap_ena"             default="true" /> 
+
   <!-- Choose between RGB-D and stereo -->      
-  <arg name="stereo"          default="false"/>
+  <arg name="stereo"                  default="false"/>
  
   <!-- Choose visualization -->
   <arg name="rtabmapviz"              default="false" /> 
@@ -76,7 +79,7 @@
   <arg name="rgb_image_transport"     default="compressed"/>    <!-- Common types: compressed, theora (see "rosrun image_transport list_transports") -->
   <arg name="depth_image_transport"   default="compressedDepth"/>  <!-- Depth compatible types: compressedDepth (see "rosrun image_transport list_transports") -->
    
-  <arg name="subscribe_scan"          default="false"/>
+  <arg name="subscribe_scan"          default="true"/>
   <arg name="scan_topic"              default="/scan"/>
   <arg name="subscribe_scan_cloud"    default="false"/>
   <arg name="scan_cloud_topic"        default="/scan_cloud"/>
@@ -256,7 +259,7 @@
   
     <!-- Visual SLAM (robot side) -->
     <!-- args: "delete_db_on_start" and "udebug" -->
-    <node name="rtabmap" pkg="rtabmap_ros" type="rtabmap" output="$(arg output)" args="$(arg rtabmap_args)" launch-prefix="$(arg launch_prefix)">
+    <node if="$(arg rtabmap_ena)" name="rtabmap" pkg="rtabmap_ros" type="rtabmap" output="$(arg output)" args="$(arg rtabmap_args)" launch-prefix="$(arg launch_prefix)">
       <param     if="$(arg stereo)" name="subscribe_depth"  type="bool" value="false"/>
       <param unless="$(arg stereo)" name="subscribe_depth"  type="bool" value="true"/>
       <param name="subscribe_rgbd"       type="bool"   value="$(arg subscribe_rgbd)"/>
@@ -281,8 +284,6 @@
       <param name="config_path"          type="string" value="$(arg cfg)"/>
       <param name="queue_size"           type="int" value="$(arg queue_size)"/>
       <param name="scan_normal_k"        type="int" value="$(arg scan_normal_k)"/>
-      <param name="landmark_linear_variance"   type="double" value="$(arg tag_linear_variance)"/>
-      <param name="landmark_angular_variance"  type="double" value="$(arg tag_angular_variance)"/>     
 
       <param name="Grid/FromDepth" type="string" value="true"/> 
       
@@ -311,9 +312,19 @@
       <remap from="user_data"              to="$(arg user_data_topic)"/>
       <remap from="user_data_async"        to="$(arg user_data_async_topic)"/>
       <remap from="gps/fix"                to="$(arg gps_topic)"/>
-      <remap from="tag_detections"         to="$(arg tag_topic)"/>
       <remap from="odom"                   to="$(arg odom_topic)"/>
       <remap from="imu"                    to="$(arg imu_topic)"/>
+
+      <!-- April tags -->
+      <!-- april tags-->
+      <param name="landmark_linear_variance"    type="double" value="$(arg tag_linear_variance)"/>
+      <param name="landmark_angular_variance"   type="double" value="$(arg tag_angular_variance)"/> 
+      <remap from="tag_detections"              to="$(arg tag_topic)"/> 
+      <!-- <param name="Optimizer/Robust"            type="string"   value="false"/> -->
+      <!-- <param name="RGBD/OptimizeMaxError"       type="string"   value="3"/> -->
+      <param name="RGBD/MarkerDetection"        type="bool" value="false"/>
+      <!-- <param name="Marker/Length"               type="string"  value="0.172"/> -->
+      <!-- <param name="Kp/MaxFeatures"         type="int" value="-1"/> -->
       
       <!-- localization mode -->
       <param     if="$(arg localization)" name="Mem/IncrementalMemory" type="string" value="false"/>

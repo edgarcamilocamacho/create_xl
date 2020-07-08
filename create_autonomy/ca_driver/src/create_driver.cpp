@@ -152,6 +152,8 @@ CreateDriver::CreateDriver(ros::NodeHandle& nh)
 
   diagnostics_.setHardwareID(robot_model_name);
 
+  receiving_cmd_vel_ = true;
+
   ROS_INFO("[CREATE] Ready.");
 }
 
@@ -282,9 +284,15 @@ bool CreateDriver::update()
   publishWheeldrop();
 
   // If last velocity command was sent longer than latch duration, stop robot
-  if (ros::Time::now() - last_cmd_vel_time_ >= ros::Duration(latch_duration_))
-  {
+  if (ros::Time::now() - last_cmd_vel_time_ >= ros::Duration(latch_duration_)){
     robot_->drive(0, 0);
+    // ROS_WARN("[CREATE] robot_->drive(0, 0)");
+    if(receiving_cmd_vel_){
+      ROS_WARN("[CREATE] %.2f seconds without cmd_vel", latch_duration_);
+      receiving_cmd_vel_ = false;  
+    }
+  }else{
+    receiving_cmd_vel_ = true;
   }
 
   return true;

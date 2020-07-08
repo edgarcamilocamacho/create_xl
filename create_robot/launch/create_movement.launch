@@ -1,8 +1,0 @@
- 
-<launch>
-
-    <include file="$(find create_motion)/launch/create_driver.launch" />
-
-    <!-- <node pkg="tf2_ros" type="static_transform_publisher" name="footprint_to_base" args="0.0 0.0 0.0 0.0 0.0 0.0 base_footprint base_link" /> -->
-
-</launch>

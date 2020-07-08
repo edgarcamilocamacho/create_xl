@@ -2,7 +2,6 @@
 import rospy
 import numpy as np
 from scipy.spatial.transform import Rotation as R
-import matplotlib.pyplot as plt
 from nav_msgs.msg import Odometry
 from collections import deque
 

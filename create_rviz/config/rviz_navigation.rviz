@@ -145,7 +145,7 @@ Visualization Manager:
       Draw Behind: false
       Enabled: false
       Name: Map
-      Topic: /rtabmap/proj_map
+      Topic: /rtabmap/grid_map
       Unreliable: false
       Use Timestamp: false
       Value: false
@@ -308,7 +308,7 @@ Visualization Manager:
   Value: true
   Views:
     Current:
-      Angle: -3.1407999992370605
+      Angle: -2.645800828933716
       Class: rviz/TopDownOrtho
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.05999999865889549
@@ -318,11 +318,11 @@ Visualization Manager:
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Scale: 247.40135192871094
+      Scale: 170.7615509033203
       Target Frame: <Fixed Frame>
       Value: TopDownOrtho (rviz)
-      X: 0.409012109041214
-      Y: -0.3931431770324707
+      X: -0.7823898792266846
+      Y: -1.2615630626678467
     Saved: ~
 Window Geometry:
   Displays:
