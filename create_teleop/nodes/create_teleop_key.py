@@ -39,15 +39,15 @@ LIN_VEL_STEP_SIZE = 0.01
 ANG_VEL_STEP_SIZE = 0.1
 
 msg = """
-Control Your TurtleBot3!
+Control Your Create XL!
 ---------------------------
 Moving around:
         w
    a    s    d
         x
 
-w/x : increase/decrease linear velocity (Burger : ~ 0.22, Waffle and Waffle Pi : ~ 0.26)
-a/d : increase/decrease angular velocity (Burger : ~ 2.84, Waffle and Waffle Pi : ~ 1.82)
+w/x : increase/decrease linear velocity (Max 0.5 m/s)
+a/d : increase/decrease angular velocity (Max 4.0 rad/s)
 
 space key, s : force stop
 

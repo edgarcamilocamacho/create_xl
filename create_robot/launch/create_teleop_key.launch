@@ -1,3 +1,0 @@
-<launch>
-  <node type="create_teleop_key.py" name="create_teleop_ke" pkg="create_teleop" output="screen" />
-</launch>

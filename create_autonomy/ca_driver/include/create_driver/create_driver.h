@@ -87,6 +87,7 @@ private:
   double latch_duration_;
   double loop_hz_;
   bool publish_tf_;
+  bool receiving_cmd_vel_;
   int baud_;
 
   void cmdVelCallback(const geometry_msgs::TwistConstPtr& msg);

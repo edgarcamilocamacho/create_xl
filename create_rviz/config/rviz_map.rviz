@@ -3,8 +3,7 @@ Panels:
     Help Height: 78
     Name: Displays
     Property Tree Widget:
-      Expanded:
-        - /TF1/Frames1
+      Expanded: ~
       Splitter Ratio: 0.4110580086708069
     Tree Height: 541
   - Class: rviz/Selection
@@ -115,6 +114,8 @@ Visualization Manager:
           Value: false
         camera_link:
           Value: false
+        d435_bottom_screw_frame:
+          Value: true
         left_wheel_link:
           Value: false
         map:
@@ -123,6 +124,12 @@ Visualization Manager:
           Value: true
         right_wheel_link:
           Value: false
+        tag_12:
+          Value: true
+        tag_3:
+          Value: true
+        tag_6:
+          Value: true
       Marker Scale: 1
       Name: TF
       Show Arrows: true
@@ -134,23 +141,29 @@ Visualization Manager:
             cam_T_odom_frame:
               cam_T_pose_frame:
                 base_link:
-                  camera_link:
-                    camera_aligned_depth_to_color_frame:
-                      camera_color_optical_frame:
+                  d435_bottom_screw_frame:
+                    camera_link:
+                      camera_aligned_depth_to_color_frame:
+                        camera_color_optical_frame:
+                          tag_12:
+                            {}
+                          tag_3:
+                            {}
+                          tag_6:
+                            {}
+                      camera_aligned_depth_to_infra1_frame:
+                        camera_infra1_optical_frame:
+                          {}
+                      camera_color_frame:
                         {}
-                    camera_aligned_depth_to_infra1_frame:
-                      camera_infra1_optical_frame:
+                      camera_depth_frame:
+                        camera_depth_optical_frame:
+                          {}
+                      camera_infra1_frame:
                         {}
-                    camera_color_frame:
-                      {}
-                    camera_depth_frame:
-                      camera_depth_optical_frame:
-                        {}
-                    camera_infra1_frame:
-                      {}
-                    camera_infra2_frame:
-                      camera_infra2_optical_frame:
-                        {}
+                      camera_infra2_frame:
+                        camera_infra2_optical_frame:
+                          {}
                   left_wheel_link:
                     {}
                   right_wheel_link:
@@ -318,6 +331,22 @@ Visualization Manager:
       Topic: /odom
       Unreliable: false
       Value: false
+    - Alpha: 1
+      Arrow Length: 0.30000001192092896
+      Axes Length: 0.30000001192092896
+      Axes Radius: 0.009999999776482582
+      Class: rviz/PoseArray
+      Color: 255; 25; 0
+      Enabled: true
+      Head Length: 0.07000000029802322
+      Head Radius: 0.029999999329447746
+      Name: PoseArray
+      Shaft Length: 0.23000000417232513
+      Shaft Radius: 0.009999999776482582
+      Shape: Arrow (Flat)
+      Topic: /rtabmap/landmarks
+      Unreliable: false
+      Value: true
   Enabled: true
   Global Options:
     Background Color: 48; 48; 48
@@ -342,25 +371,25 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz/Orbit
-      Distance: 8.462322235107422
+      Distance: 6.577314853668213
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.05999999865889549
         Stereo Focal Distance: 1
         Swap Stereo Eyes: false
         Value: false
       Focal Point:
-        X: 0.06923568248748779
-        Y: -1.1979142427444458
-        Z: -0.06795519590377808
+        X: 0.5277532935142517
+        Y: 0.670566976070404
+        Z: 0.9623321294784546
       Focal Shape Fixed Size: true
       Focal Shape Size: 0.05000000074505806
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Pitch: 0.6297979354858398
+      Pitch: 0.5647979974746704
       Target Frame: base_link
       Value: Orbit (rviz)
-      Yaw: 2.1278319358825684
+      Yaw: 3.417832612991333
     Saved: ~
 Window Geometry:
   Displays:

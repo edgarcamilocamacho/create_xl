@@ -43,13 +43,13 @@ Convención para los computadores involucrados (conectados a la misma red):
 
 Variables de entorno en el Robot:
 ``` bash
-export ROS_MASTER_URI=http://<PC_IP>:11311
+export ROS_MASTER_URI=http://<ROBOT_IP>:11311
 export ROS_IP=<ROBOT_IP>
 ```
 
 Variables de entorno en el PC:
 ``` bash
-export ROS_MASTER_URI=http://<PC_IP>:11311
+export ROS_MASTER_URI=http://<ROBOT_IP>:11311
 export ROS_IP=<PC_IP>
 ```
 
@@ -118,7 +118,7 @@ catkin_make
 
 # Ejecución
 
-[PC] Para las siguientes sesiones, se debe ejecutar `roscore` en el PC:
+[Robot] Para las siguientes sesiones, se debe ejecutar `roscore` en el PC:
 ``` bash
 roscore
 ```
@@ -132,7 +132,7 @@ source ~/ros/create_ws/devel/setup.bash
 
 [Robot] Lanzar driver:
 ``` bash
-roslaunch create_robot create_movement.launch
+roslaunch create_motion create_motion.launch
 ```
 
 Debe mostrar algo como:
@@ -147,7 +147,7 @@ Debe mostrar algo como:
 
 [Robot o PC] Lanzar `teleop` desde el teclado:
 ``` bash
-roslaunch create_robot create_teleop_key.launch
+roslaunch create_teleop create_teleop_key.launch
 ```
 [Robot o PC] Lanzar `teleop` desde joystick:
 ``` bash
@@ -224,7 +224,7 @@ Finalice RViz, si se encuentra abierto.
 [PC o Robot] Teniendo andando los nodos del movimiento manual, el *teleop*, y las dos cámaras, ejecute el siguiente *launchfile* (*Importante:/ ésto eliminará el último mapa creado, si no quiere esto, haga una copia de seguridad del archivo `~/.ros/rtabmap.db`*):
 
 ``` bash
-roslaunch create_robot create_map.launch
+roslaunch create_rtabmap create_map.launch
 ```
 
 Los nodos de *rtabmap* arrancarán, y debe mostrarse algo como lo siguiente:
@@ -261,7 +261,7 @@ Finalice RViz, si se encuentra abierto.
 
 [PC o Robot] Lance el *launchfile* de localización.
 ``` bash
-roslaunch create_robot create_loc.launch
+roslaunch create_rtabmap create_loc.launch
 ```
 
 *Rtabmap* usará el mapa guardado en `~/.ros/rtabmap.db`.
