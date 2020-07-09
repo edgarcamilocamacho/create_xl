@@ -1,0 +1,11 @@
+ <launch>
+
+    <include file="$(find create_rtabmap)/launch/create_rtabmap.launch">
+        <arg name="rtabmap_args" value=""/>
+        <arg name="rtabmapviz" value="true"/>
+        <arg name="rviz" value="false"/>
+        <arg name="localization" value="true"/>
+        <arg name="rtabmap_ena" value="true"/>
+    </include>
+
+</launch>
