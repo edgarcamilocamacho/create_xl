@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<launch>
+
+  <node name="decelerator" pkg="create_motion" type="decelerator.py" output="screen">
+    <param name="linear_acc" type="double" value="10" />
+    <param name="acc_lin_x" type="double" value="0.5" />
+    <param name="acc_rot_z" type="double" value="5" />
+    <param name="cmd_hz" type="double" value="10" />    
+    <remap from="cmd_vel_in" to="cmd_vel_pre"/>
+    <remap from="cmd_vel_out" to="cmd_vel"/>
+  </node>
+  
+</launch>
