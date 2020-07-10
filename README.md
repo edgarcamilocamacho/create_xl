@@ -151,7 +151,7 @@ roslaunch create_teleop create_teleop_key.launch
 ```
 [Robot o PC] Lanzar `teleop` desde joystick:
 ``` bash
-roslaunch create_robot joy_teleop.launch [joy_config:=xbox360]
+roslaunch ca_tools joy_teleop.launch [joy_config:=xbox360]
 ```
 Se puede usar `xbox360` o `log710` dependiendo el caso
 
