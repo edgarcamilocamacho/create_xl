@@ -18,7 +18,7 @@
       <param name="range_max" type="double" value="4"/>
     </node>
 
-    <node pkg="tf2_ros" type="static_transform_publisher" name="base_to_camera_D_screw" args="-0.1505 0.0 1.008 0.0 0.0 0.0 base_link d435_bottom_screw_frame" />
+    <node pkg="tf2_ros" type="static_transform_publisher" name="base_to_camera_D_screw" args="-0.1505 0.0 0.708 0.0 0.0 0.0 base_link d435_bottom_screw_frame" />
     <node pkg="tf2_ros" type="static_transform_publisher" name="camera_D_screw_to_camera" args="0.0 0.0175 0.0125 0.0 0.0 0.0 d435_bottom_screw_frame camera_link" />
 
 </launch>
