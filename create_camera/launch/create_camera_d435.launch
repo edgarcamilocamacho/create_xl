@@ -3,7 +3,7 @@
     <include file="$(find realsense2_camera)/launch/rs_camera.launch">
       <arg name="camera" value="camera"/>
           <arg name="serial_no" value="834412071425"/>
- <!-- <arg name="serial_no" value="933322073325"/> -->
+ <!-- <arg name="serial_no" value="836612071194"/> -->
       <arg name="align_depth" value="true"/>
       <arg name="initial_reset" value="true"/>
       <arg name="enable_sync" value="true"/>
