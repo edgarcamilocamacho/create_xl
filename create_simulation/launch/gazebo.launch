@@ -1,0 +1,47 @@
+<launch>
+    <env name="GAZEBO_MODEL_PATH" value="$(find create_simulation)/models:$(optenv GAZEBO_MODEL_PATH)" />
+
+    <!-- these are the arguments you can pass this launch file, for example paused:=true -->
+    <arg name="paused" default="false"/>
+    <arg name="use_sim_time" default="true"/>
+    <arg name="gui" default="true"/>
+    <arg name="headless" default="false"/>
+    <arg name="debug" default="false"/>
+    <arg name="world" default="$(find create_simulation)/worlds/turtlebot3_house.world" />
+    <arg name="model" default="$(find create_description)/urdf/create_xl_sim.urdf.xacro"/>
+  
+    <!-- robot description to load in rviz or gazebo -->
+    <param name="robot_description" command="$(find xacro)/xacro $(arg model)" />
+    
+    <!-- We resume the logic in empty_world.launch, changing only the name of the world to be launched -->
+    <include file="$(find gazebo_ros)/launch/empty_world.launch">
+      <arg name="world_name" value="$(arg world)"/>
+      <arg name="debug" value="$(arg debug)" />
+      <arg name="gui" value="$(arg gui)" />
+      <arg name="paused" value="$(arg paused)"/>
+      <arg name="use_sim_time" value="$(arg use_sim_time)"/>
+      <arg name="headless" value="$(arg headless)"/>
+    </include>
+  
+    <!-- push robot_description to factory and spawn robot in gazebo -->
+    <node name="urdf_spawner" pkg="gazebo_ros" type="spawn_model"
+          args="-x -7.0 -y 3.0 -z 0 -urdf -model robot -param robot_description" respawn="false" output="screen" />
+
+    <node pkg="robot_state_publisher" type="robot_state_publisher"  name="robot_state_publisher">
+        <param name="publish_frequency" type="double" value="30.0" />
+    </node>
+
+    <node pkg="create_camera" type="create_new_odom.py" name="create_new_odom" />
+    
+    <node pkg="depthimage_to_laserscan" type="depthimage_to_laserscan" name="depthimage_to_laserscan">
+      <!-- <remap from="/camera/aligned_depth_to_color/image_raw"   to="/camera/depth/image_rect_raw"/> -->
+      <!-- <remap from="/camera/aligned_depth_to_color/camera_info" to="/camera/depth/camera_info"/> -->
+      <!-- <remap from="image"       to="/camera/depth/image_rect_raw"/>
+      <remap from="camera_info" to="/camera/depth/camera_info"/> -->
+      <remap from="image"   to="/camera/aligned_depth_to_color/image_raw"/>
+      <remap from="camera_info" to="/camera/depth/camera_info"/>
+      <remap from="scan"        to="/scan"/>
+      <param name="range_max" type="double" value="4"/>
+    </node>
+  </launch>
+  

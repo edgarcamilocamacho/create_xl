@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<launch>
+  <!-- <param name="robot_description" command="$(find xacro)/xacro '$(find create_autonomy)/ca_description/urdf/create_base_gazebo.urdf.xacro'" /> -->
+  <arg name="model" default="$(find create_description)/urdf/create_xl_sim.urdf.xacro"/>
+  <param name="robot_description" command="$(find xacro)/xacro --inorder $(arg model) use_nominal_extrinsics:=true add_plug:=true" />
+    <!-- arguments for the urdf xacro file, rviz visualization and namespace -->
+    
+    <node pkg="robot_state_publisher" type="robot_state_publisher"  name="robot_state_publisher">
+      <param name="publish_frequency" type="double" value="30.0" />
+    </node>
+
+  <arg name="x" default="0"/>
+  <arg name="y" default="0"/>
+  <arg name="z" default="0"/>
+
+  <node name="create_2_spawn" pkg="gazebo_ros" type="spawn_model" output="screen" 
+        args="-urdf -param robot_description -model create_xl -x $(arg x) -y $(arg y) -z $(arg z)"/>
+
+  <!-- this will include the launch file for gazebo given the model -->  
+  <include file="$(find realsense2_description)/launch/gazebo.launch">
+    <arg name="model" value="$(arg model)" />
+  </include>
+
+  <arg name="gui" default="True" />
+  <param name="use_gui" value="$(arg gui)" />
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find realsense2_description)/rviz/urdf.rviz" required="true" />
+</launch>

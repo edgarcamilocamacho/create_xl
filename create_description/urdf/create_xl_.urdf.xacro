@@ -1,0 +1,48 @@
+<?xml version="1.0" ?>
+<robot name="create_2" xmlns:xacro="http://ros.org/wiki/xacro">
+
+  <material name="Gray">
+    <color rgba="${150/255} ${150/255} ${150/255} 1.0"/>
+  </material>
+
+  <link name="base_link">
+    <visual>
+      <origin rpy="1.5708 0 1.5708" xyz="0 0 0.34315"/>
+      <geometry>
+        <mesh filename="package://create_description/meshes/create_xl.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+      <material name="Gray"/>
+    </visual>
+  </link>
+
+  <link name="left_wheel_link">
+    <inertial>
+      <origin xyz="0 0 0" />
+      <mass value="0.01" />
+      <inertia ixx="0.001" ixy="0.0" ixz="0.0" iyy="0.001" iyz="0.0" izz="0.001" />
+    </inertial>
+  </link>
+
+  <joint name="left_wheel_joint" type="continuous">
+    <origin xyz="0 0.1175 0.015" rpy="0 0 0" />
+    <parent link="base_link" />
+    <child link="left_wheel_link" />
+    <axis xyz="0 1 0" />
+  </joint>
+
+  <link name="right_wheel_link">
+    <inertial>
+    <origin xyz="0 0 0" />
+    <mass value="0.01" />
+    <inertia ixx="0.001" ixy="0.0" ixz="0.0" iyy="0.001" iyz="0.0" izz="0.001" />
+    </inertial>
+  </link>
+
+  <joint name="right_wheel_joint" type="continuous">
+    <origin xyz="0 -0.1175 0.015" rpy="0 0 0" />
+    <parent link="base_link" />
+    <child link="right_wheel_link" />
+    <axis xyz="0 1 0" />
+  </joint>
+
+</robot>

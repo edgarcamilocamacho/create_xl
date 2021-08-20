@@ -1,9 +1,8 @@
-<launch>
+ <launch>
 
     <include file="$(find realsense2_camera)/launch/rs_camera.launch">
       <arg name="camera" value="camera"/>
-          <arg name="serial_no" value="834412071425"/>
- <!-- <arg name="serial_no" value="836612071194"/> -->
+      <arg name="serial_no" value="819112072640"/>
       <arg name="align_depth" value="true"/>
       <arg name="initial_reset" value="true"/>
       <arg name="enable_sync" value="true"/>
@@ -18,7 +17,7 @@
       <param name="range_max" type="double" value="4"/>
     </node>
 
-    <node pkg="tf2_ros" type="static_transform_publisher" name="base_to_camera_D_screw" args="-0.1505 0.0 0.708 0.0 0.0 0.0 base_link d435_bottom_screw_frame" />
+    <node pkg="tf2_ros" type="static_transform_publisher" name="base_to_camera_D_screw" args="0.0105 0.0 0.408 0.0 0.0 0.0 base_link d435_bottom_screw_frame" />
     <node pkg="tf2_ros" type="static_transform_publisher" name="camera_D_screw_to_camera" args="0.0 0.0175 0.0125 0.0 0.0 0.0 d435_bottom_screw_frame camera_link" />
 
 </launch>

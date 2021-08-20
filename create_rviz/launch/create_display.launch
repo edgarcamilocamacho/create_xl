@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<launch>
+  <arg name="rviz_cfg" default="$(find create_rviz)/config/rviz_display_bars.rviz" />
+  <include file="$(find create_description)/launch/spawn.launch"/>
+  
+  <!-- Show in Rviz   -->
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(arg rviz_cfg)"/>
+
+</launch>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launch>
+    <!-- arguments for the urdf xacro file, rviz visualization and namespace -->
+    <arg name="model" default="$(find create_description)/urdf/create_xl_sim.urdf.xacro"/>
+    <param name="robot_description" command="$(find xacro)/xacro --inorder $(arg model) use_nominal_extrinsics:=true add_plug:=true" />
+
+    <!-- this will include the launch file for gazebo given the model -->  
+    <include file="$(find create_simulation)/launch/gazebo.launch">
+      <arg name="model" value="$(arg model)" />
+    </include>
+
+    <arg name="gui" default="True" />
+    <param name="use_gui" value="$(arg gui)" />
+    <node name="rviz" pkg="rviz" type="rviz" args="-d $(find realsense2_description)/rviz/urdf.rviz" required="true" />
+</launch>
