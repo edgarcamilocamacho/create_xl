@@ -20,6 +20,9 @@ Versiones de ROS:
 * ROS Kinetic
 * ROS Melodic
 
+Versiones de Gazebo:
+* Gazebo 9.0
+
 Librerías de Python (2.7):
 
 * scipy==1.2.0  `sudo pip install scipy==1.2.0`
@@ -216,6 +219,20 @@ La visualización debe presentarse así:
 ![rviz_d435.png](https://github.com/edgarcamilocamacho/create_xl/blob/master/doc/img/rviz_t265.png?raw=true)
 
 Teniendo en cuenta que esta visualización se encuentra referenciada al frame *odom*, al desplazar el robot, tanto el modelo del robot como el láser y la nube de puntos de desplazarán igualmente.
+
+
+## Simulación
+
+Cuando no se tiene el robot físico, se puede simular haciendo uso del simulador Gazebo y plugins complementarios ya configurados en el proyecto. 
+
+``` bash
+roslaunch create_simulation gazebo.launch
+```
+La visualización debe presentarse así:
+
+![gazebo.png](https://github.com/edgarcamilocamacho/create_xl/blob/test-javier/doc/img/gazebo.png?raw=true)
+
+La teleoperación, el mapeo manual, la localización y la navegación pueden ser ejecutados de la misma manera. No es necesario inicializar las cámaras ni la conexión con el robot. 
 
 ## Mapeo manual
 
